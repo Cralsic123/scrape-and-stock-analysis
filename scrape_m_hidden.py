@@ -20,9 +20,6 @@ load_dotenv()
 api_id = os.getenv('api_id') 
 api_hash = os.getenv('api_hash')
 async def scrape_channel_messages(client, channel_name, limit=500):
-    """
-    Scrape messages from a specific Telegram channel.
-    """
     messages = await client.get_messages(channel_name, limit=limit)
     data = []
     for message in messages:
@@ -34,16 +31,10 @@ async def scrape_channel_messages(client, channel_name, limit=500):
     return pd.DataFrame(data)
 
 def save_to_csv(dataframe, filename):
-    """
-    Save the scraped data to a CSV file.
-    """
     dataframe.to_csv(filename, index=False)
     print(f"Data saved to {filename}")
 
 async def scrape_multiple_channels(client, channels, limit=500):
-    """
-    Scrape messages from multiple Telegram channels.
-    """
     tasks = []
     for channel_name in channels:
         print(f"Starting to scrape channel: {channel_name}")
@@ -62,7 +53,8 @@ async def main():
         'the_trading_advisor_stock',
         'STOCKGAINERSS', 
         'TheWealthMagnet',  
-        'originalbullbull' 
+        'originalbullbull',
+        'official_samco' 
     ]
 
 
